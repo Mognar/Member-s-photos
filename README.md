@@ -12,6 +12,7 @@ graph.parse("https://api20170418155059.azure-api.net/fixedquery/house_current_me
 
 
 #query the RDF using SPARQL, looking for all Members' full names and images
+
 query = """
     SELECT ?o ?obj WHERE {
          ?s <http://example.com/A5EE13ABE03C4D3A8F1A274F57097B6C> ?o .
@@ -20,8 +21,11 @@ query = """
     """
 #print out the names and links to images. Had to replace URL of the image object in the RDF with the text of the publicly
 #accessible API. Not sure if there is an easier way of getting at this link. Tacked .jpeg on the end of the link too.
+
 for row in graph.query(query):
-    initial = ("%s: %s" %(row[0],row[1]))
-    print (initial.replace("http://id.ukpds.org/", "https://api20170418155059.azure-api.net/photo/")+".jpeg")
+   
+   initial = ("%s: %s" %(row[0],row[1]))
+   
+   print (initial.replace("http://id.ukpds.org/", "https://api20170418155059.azure-api.net/photo/")+".jpeg")
 
 Take a look at the Ipython notebook for more information and the output from that code. You'll have to scroll past the first lot of RDF to get to the query that returns links to Members'photos.
